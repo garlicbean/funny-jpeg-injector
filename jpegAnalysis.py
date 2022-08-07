@@ -13,5 +13,5 @@ def getData(binary, *index):
 	sortedIndex.sort(reverse=True)
 	for i in sortedIndex:
 		datalen = ((binary[i+2] << 8) + (binary[i+3]))
-			outList.append(binary[(i):(i+datalen)])
+		outList.append(binary[(i):(i+datalen+2)])
 	return outList
