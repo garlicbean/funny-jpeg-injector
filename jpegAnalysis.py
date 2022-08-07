@@ -5,13 +5,6 @@ def getMarkers(binary):
 	[outList.append((markerTupleDict[(binary[x], binary[x+1])][0], x)) for x, i in enumerate(binary) if binary[x] == 255 if (binary[x], binary[x+1]) in markerTupleDict]
 	return outList
 
-def getMarkerLength(binary, markerTuple):
-#Calculates the length of the data following a marker(s) (including length bytes)
-#Outputs tuple: (Marker ID, Index, Length)
-	outList = []
-	[outList.append((i[0], i[1], ((binary[i[1]+2] << 8) + binary[i[1]+3]))) for i in markerTuple if markerDict[i[0]][3] == 1]
-	return outList
-
 def getData(binary, *index, flag=0):
 
 	#flags:
