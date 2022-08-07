@@ -6,7 +6,6 @@ def getMarkers(binary):
 	return outList
 
 def getData(binary, *index):
-
 	outList = []
 	sortedIndex = []
 	[sortedIndex.append(i) for i in index if i not in sortedIndex]
