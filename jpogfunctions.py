@@ -8,7 +8,10 @@ def getMarkers(binary):
 	outList = []
 	[outList.append((markerTupleDict[(binary[x], binary[x+1])][0], x)) for x, i in enumerate(binary) if binary[x] == 255 if (binary[x], binary[x+1]) in markerTupleDict]
 	return outList
-
+"""
+ARGS:
+binary - the binary data of a JPEG
+"""
 def getData(binary, *index):
 	outList = []
 	sortedIndex = []
@@ -18,7 +21,11 @@ def getData(binary, *index):
 		datalen = ((binary[i+2] << 8) + (binary[i+3]))
 		outList.append(binary[(i):(i+datalen+2)])
 	return outList
-
+"""
+ARGS:
+binary - the binary data of a JPEG
+index - index # of the start of the marker in the JPEG
+"""
 ###Functions for modification of JPEGs
 
 
@@ -51,3 +58,8 @@ def removeData(binary, *index, flag=0):
 			case 1:
 				del binary[i:i+datalen+2]
 	return bytes(binary)
+"""
+ARGS:
+binary - the binary data of a JPEG
+index - index # of the start of the marker in the JPEG
+"""
