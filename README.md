@@ -1,2 +1,2 @@
 # jpegger
-funny python scripts for jpeg analysis, modfication, and embedding/extracting data into them.  
+functions/script for modifying jpeg data and injecting your own  
