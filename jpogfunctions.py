@@ -65,7 +65,7 @@ index - index # of the start of the marker in the JPEG
 
 ###Functons for extracting/injecting data into JPEGS
 
-def insertData(binary, data, index):
+def insertData(binary, data, index, flag=0):
 #Returns binary with data inserted into a specified index position
 	outbin = bytearray(binary)
 	outbin[index:index] = data
