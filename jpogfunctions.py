@@ -13,6 +13,8 @@ ARGS:
 binary - the binary data of a JPEG
 """
 def getData(binary, *index):
+#Extracts data from binaries, returns a list
+##NOTE: Make sure you reference the index of the data you want
 	outList = []
 	sortedIndex = []
 	[sortedIndex.append(i) for i in index if i not in sortedIndex]
@@ -72,6 +74,8 @@ def insertData(binary, data, index):
 	outbin[index:index] = data
 	return bytes(outbin)
 
-def extractData(binary, datatag):
-#Searches for a tag and extracts the data from the section that contains it
-	pass
+def extractData(binary, datatag=b'\x45\x45\x45\x45\x04\x02'):
+#Searches for a tag and returns the data from the section that contains it
+	index = binary.find(datatag) - 4
+	taglen = len(datatag)
+	return(getData(binary, index)[0][taglen+4::])
