@@ -64,14 +64,25 @@ index - index # of the start of the marker in the JPEG
 
 ###Functons for extracting/injecting data into JPEGS
 
-def insertData(binary, data, index, flag=0):
+def insertData(binary, data, index):
 #Returns binary with data inserted into a specified index position
 	outbin = bytearray(binary)
 	outbin[index:index] = data
 	return bytes(outbin)
+"""
+ARGS:
+binary - the binary data of an embedded JPEG
+data - data formatted to be inserted into a JPEG position
+index - index position of data insertion
+"""
 
 def extractData(binary, datatag=b'\x45\x45\x45\x45\x04\x02'):
 #Searches for a tag and returns the data from the section that contains it
 	index = binary.find(datatag) - 4
 	taglen = len(datatag)
 	return(getData(binary, index)[0][taglen+4::])
+"""
+ARGS:
+binary - the binary data of an embedded JPEG
+datatag - bytes that identify that embedded data follows
+"""
