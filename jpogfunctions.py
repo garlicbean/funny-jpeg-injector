@@ -34,7 +34,8 @@ index - index # of the start of the marker in the JPEG
 def assembleMessage(markername, bytepayload, bytetag=b'\x45\x45\x45\x45\x04\x02'):
 #Formats bytes to be placed gently inside of a jpeg file, places a tag for later extraction
 	payloadLenBits = bin(len(bytepayload) + len(bytetag) + 2).lstrip('0b').zfill(16)
-	payloadLenBits = int(payloadLenBits[0:7], 2), int(payloadLenBits[8:16], 2)
+	print(payloadLenBits)
+	payloadLenBits = int(payloadLenBits[0:8], 2), int(payloadLenBits[8:16], 2)
 	message = bytearray(markerDict[markername][0]) + bytes(payloadLenBits) + bytetag + bytepayload
 	return bytes(message)
 
