@@ -33,14 +33,10 @@ index - index # of the start of the marker in the JPEG
 
 def assembleMessage(markername, bytepayload, bytetag=b'\x45\x45\x45\x45\x04\x02'):
 #Formats bytes to be placed gently inside of a jpeg file, places a tag for later extraction
-	outbin = []
-	
-	messagelen = len(bytepayload) + len(bytetag)
-	if messagelen > 65535:
-		raise ValueError('Message too long')
-	markerBytes = markerDict[markername][0]
-	lengthBytes = int(hex(messagelen).lstrip('0x').zfill(4) [0:2], 16), int(hex(messagelen).lstrip('0x').zfill(4)[2:4], 16)
-	return bytes(markerBytes+lengthBytes+tuple(bytetag)+tuple(bytepayload))
+	payloadLenBits = bin(len(bytepayload) + len(bytetag) + 2).lstrip('0b').zfill(16)
+	payloadLenBits = int(payloadLenBits[0:7], 2), int(payloadLenBits[8:16], 2)
+	message = bytearray(markerDict[markername][0]) + bytes(payloadLenBits) + bytetag + bytepayload
+	return bytes(message)
 
 def removeData(binary, *index, flag=0):
 ##flags:
