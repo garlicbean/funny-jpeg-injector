@@ -63,3 +63,15 @@ ARGS:
 binary - the binary data of a JPEG
 index - index # of the start of the marker in the JPEG
 """
+
+###Functons for extracting/injecting data into JPEGS
+
+def insertData(binary, data, index):
+#Returns binary with data inserted into a specified index position
+	outbin = bytearray(binary)
+	outbin[index:index] = data
+	return bytes(outbin)
+
+def extractData(binary, datatag):
+#Searches for a tag and extracts the data from the section that contains it
+	pass
