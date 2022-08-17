@@ -37,6 +37,11 @@ def assembleMessage(markername, bytepayload, bytetag=b'\x45\x45\x45\x45\x04\x02'
 	payloadLenBits = int(payloadLenBits[0:8], 2), int(payloadLenBits[8:16], 2)
 	message = bytearray(markerDict[markername][0]) + bytes(payloadLenBits) + bytetag + bytepayload
 	return bytes(message)
+"""
+markername - Short name of marker ex: 'APP1', 'SOI', 'RST'.  Uses markerDict to get values
+bytepayload - data you would like to embed into the JPEG
+bytetag - Identifier for use with extractData() to identify the location of embedded data
+"""
 
 def removeData(binary, *index, flag=0):
 ##flags:
