@@ -5,9 +5,7 @@ from markerDict import *
 
 def getMarkers(binary):
 #Outputs a list of tuples (Marker ID, Index) in a binary
-	outList = []
-	[outList.append((markerTupleDict[(binary[x], binary[x+1])][0], x)) for x, i in enumerate(binary) if binary[x] == 255 if (binary[x], binary[x+1]) in markerTupleDict]
-	return outList
+	return [(markerTupleDict[(binary[x], binary[x+1])][0], x) for x, i in enumerate(binary) if binary[x] == 255 if (binary[x], binary[x+1]) in markerTupleDict]
 """
 ARGS:
 binary - the binary data of a JPEG
