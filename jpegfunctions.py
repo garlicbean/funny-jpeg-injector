@@ -15,13 +15,10 @@ binary - the binary data of a JPEG
 def getData(binary, *index):
 #Extracts data from binaries, returns a list
 ##NOTE: Make sure you reference the index of the data you want
-	outList = []
 	sortedIndex = []
 	[sortedIndex.append(i) for i in index if i not in sortedIndex]
 	sortedIndex.sort(reverse=True)
-	for i in sortedIndex:
-		datalen = ((binary[i+2] << 8) + (binary[i+3]))
-		outList.append(binary[(i):(i+datalen+2)])
+	outList = [((binary[(i):(i+((binary[i+2] << 8) + (binary[i+3]))+2)])) for i in sortedIndex]
 	return outList
 """
 ARGS:
